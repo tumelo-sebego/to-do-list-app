@@ -15,7 +15,7 @@ $(document).ready(function () {
 
   // Load todos from file
   function loadTodos() {
-    $.get("todos.txt", function (data) {
+    $.get("/todos", function (data) {
       const todos = data ? data.split("\n").filter((todo) => todo.trim()) : [];
       todos.forEach((todo) => {
         const [text, completed] = todo.split("|");
@@ -76,7 +76,7 @@ $(document).ready(function () {
     });
 
     $.ajax({
-      url: "save_todo.php",
+      url: "/save_todo",
       method: "POST",
       data: { todos: todos.join("\n") },
       success: function (response) {
